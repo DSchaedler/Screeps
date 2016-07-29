@@ -58,7 +58,7 @@ module.exports.loop = function () {
     function defendRoom() {
         
         var hostiles = Game.rooms['W34S31'].find(FIND_HOSTILE_CREEPS);
-		var hurtCreeps = Game.room['W34S31'].find(FIND_MY_CREEPS, {filter: creeps => creeps.hits < creeps.hitsmax});
+		var hurtCreeps = Game.rooms['W34S31'].find(FIND_MY_CREEPS, {filter: creeps => creeps.hits < creeps.hitsmax});
         var towers = Game.rooms['W34S31'].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
         
         if(hostiles.length > 0) {
