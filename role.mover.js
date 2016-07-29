@@ -30,22 +30,7 @@ var roleMover = {
 			    for( i = 0; i < transferTo.length; i++ ) {
 				    creep.transfer(transferTo[i], RESOURCE_ENERGY);}
 				if(transferTo.length == 0) {
-					if(currentCreep.memory.role == 'builder' || currentCreep.memory.role == 'repairer'){
-						if(currentCreep.carry.energy == 0) {
-							transferTo.push(currentCreep);
-						}
-					}
-				}
-				if(transferTo.length == 0) {
 					var transferTo = creep.room.find(FIND_STRUCTURES, {
-						filter: (structure) => {
-							return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER) &&
-								structure.energy < structure.energyCapacity;
-						}
-					});
-				}
-				if(transferTo.length == 0) {
-					var transferTo = Game.spawns.Spawn1.room.find(FIND_STRUCTURES, {
 						filter: (structure) => {
 							return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER) &&
 								structure.energy < structure.energyCapacity;
