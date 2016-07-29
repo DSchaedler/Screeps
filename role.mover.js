@@ -6,7 +6,7 @@ var roleMover = {
             var harvesters = [];
             for(var name in Game.creeps) {
                 var currentCreep = Game.creeps[name];
-                if(_.includes(currentCreep.memory.role, 'harvester')) {
+                if(currentCreep.memory.role == 'harvester') {
 					harvesters.push(currentCreep);
 				}
             }
