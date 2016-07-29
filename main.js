@@ -66,7 +66,7 @@ module.exports.loop = function () {
             Game.notify(`User ${username} spotted in room ${'W34S31'}. Activiating Turrets.`);
             towers.forEach(tower => tower.attack(hostiles[0]));
         }
-        else if (hurtCreeps.length > 0) {
+        else if (hurtcreeps.length > 0) {
 			towers.forEach(tower => tower.heal(hurtCreeps[0]));
 		}
     }
