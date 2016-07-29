@@ -58,6 +58,7 @@ module.exports.loop = function () {
     function defendRoom() {
         
         var hostiles = Game.rooms['W34S31'].find(FIND_HOSTILE_CREEPS);
+		var hurtCreeps = Game.rooms['W34S31'].find(FIND_MY_CREEPS, {filter: creeps => creeps.hits < creeps.hitsmax});
         var towers = Game.rooms['W34S31'].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
         
         if(hostiles.length > 0) {
@@ -65,17 +66,8 @@ module.exports.loop = function () {
             Game.notify(`User ${username} spotted in room ${'W34S31'}. Activiating Turrets.`);
             towers.forEach(tower => tower.attack(hostiles[0]));
         }
-        else {
-            var creepsToHeal = [];
-            for(var name in Game.creeps) {
-                var currentCreep = Game.creeps[name];
-                if(currentCreep.hits < currentCreep.hitsMax) {
-					creepsToHeal.push(currentCreep);
-				}
-            }
-            if (creepsToHeal.length > 0) {
-                towers.forEach(tower => tower.heal(creepsToHeal[1]));
-            }
-        }
+        else if (hurtCreeps.length > 0) {
+			towers.forEach(tower => tower.heal(hurtCreeps[0]));
+		}
     }
 };

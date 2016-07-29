@@ -6,14 +6,14 @@ var roleMover = {
             var harvesters = [];
             for(var name in Game.creeps) {
                 var currentCreep = Game.creeps[name];
-                if(_.includes(currentCreep.memory.role, 'harvester')) {
+                if(currentCreep.memory.role == 'harvester') {
 					harvesters.push(currentCreep);
 				}
             }
-			
-			harvesters.sort(function(a, b){return b.carry.energy - a.carry.energy});
-            creep.moveTo(harvesters[0]);
-            if(harvesters.length == 0) {
+			if (harvesters.length > 0 ) {
+				harvesters.sort(function(a, b){return b.carry.energy - a.carry.energy});
+				creep.moveTo(harvesters[0]);}
+            else {
                 creep.moveTo(3,25);}
         }
         else {
@@ -26,26 +26,12 @@ var roleMover = {
 					        transferTo.push(currentCreep);}
 					}
 				}
-				creep.moveTo(transferTo[0]);
+				if (transferTo.length > 0) {
+					creep.moveTo(transferTo[0]);}
 			    for( i = 0; i < transferTo.length; i++ ) {
 				    creep.transfer(transferTo[i], RESOURCE_ENERGY);}
 				if(transferTo.length == 0) {
-					if(currentCreep.memory.role == 'builder' || currentCreep.memory.role == 'repairer'){
-						if(currentCreep.carry.energy == 0) {
-							transferTo.push(currentCreep);
-						}
-					}
-				}
-				if(transferTo.length == 0) {
 					var transferTo = creep.room.find(FIND_STRUCTURES, {
-						filter: (structure) => {
-							return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER) &&
-								structure.energy < structure.energyCapacity;
-						}
-					});
-				}
-				if(transferTo.length == 0) {
-					var transferTo = Game.spawns.Spawn1.room.find(FIND_STRUCTURES, {
 						filter: (structure) => {
 							return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER) &&
 								structure.energy < structure.energyCapacity;

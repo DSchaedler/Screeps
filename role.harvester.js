@@ -4,7 +4,7 @@ var roleHarvester = {
     run: function(creep, sourceNumber) {
         if(creep.carry.energy < creep.carryCapacity) {
             var sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[sourceNumber]) == ERR_NOT_IN_RANGE) {
+            if(sources.length >0 && creep.harvest(sources[sourceNumber]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[sourceNumber]);}
         }
         else if(_(Game.creeps).filter( {memory: { role: 'mover' } } ).size() < 2 ) {
@@ -19,10 +19,10 @@ var roleHarvester = {
                 var currentCreep = Game.creeps[name];
                 if(currentCreep.memory.role == 'mover' || currentCreep.memory.role == 'builder' || currentCreep.memory.role == 'upgrader' || currentCreep.memory.role == 'upgraderCharger' || currentCreep.memory.role == 'repairer') {
                     transferTo.push(currentCreep);}
-                for( i = 0; i < transferTo.length; i++) {
-					creep.transfer(transferTo[i], RESOURCE_ENERGY);
-				}
             }
+			for( i = 0; i < transferTo.length; i++) {
+				creep.transfer(transferTo[i], RESOURCE_ENERGY);
+			}
         }
     }
 };
