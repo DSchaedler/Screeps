@@ -26,7 +26,8 @@ var roleMover = {
 					        transferTo.push(currentCreep);}
 					}
 				}
-				creep.moveTo(transferTo[0]);
+				if (transferTo.length > 0) {
+					creep.moveTo(transferTo[0]);}
 			    for( i = 0; i < transferTo.length; i++ ) {
 				    creep.transfer(transferTo[i], RESOURCE_ENERGY);}
 				if(transferTo.length == 0) {
