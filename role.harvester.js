@@ -21,7 +21,7 @@ var roleHarvester = {
                     transferTo.push(currentCreep);}
             }
 			for( i = 0; i < transferTo.length; i++) {
-					creep.transfer(transferTo[i], RESOURCE_ENERGY);
+				creep.transfer(transferTo[i], RESOURCE_ENERGY);
 			}
         }
     }
