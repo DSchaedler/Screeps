@@ -69,5 +69,12 @@ module.exports.loop = function () {
         else if (hurtCreeps.length > 0) {
 			towers.forEach(tower => tower.heal(hurtCreeps[0]));
 		}
+		else {
+		    var targets =Game.rooms['W34S31'].find(FIND_STRUCTURES, { filter: object => object.hits < object.hitsMax	});
+    		targets.sort((a,b) => a.hits - b.hits);
+    
+    		if (targets.length > 0) {
+    			towers.forEach(tower => tower.repair(targets[0]));}
+    	}
     }
 };
