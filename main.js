@@ -19,11 +19,11 @@ module.exports.loop = function () {
     
     defendRoom();
     
-    var harvesters = _(Game.creeps).filter( { memory: { role: 'harvester' } } ).size();
-    var upgraders = _(Game.creeps).filter( { memory: { role: 'upgrader' } } ).size();
-    var builders = _(Game.creeps).filter( { memory: { role: 'builder' } } ).size();
-    var repairers = _(Game.creeps).filter( { memory: { role: 'repairer' } } ).size();
-    var movers = _(Game.creeps).filter( { memory: { role: 'mover' } } ).size();
+    var harvesters = _(Game.creeps).filter({memory: {role: 'harvester'}}).size();
+    var upgraders = _(Game.creeps).filter({memory: {role: 'upgrader'}}).size();
+    var builders = _(Game.creeps).filter({memory: {role: 'builder'}}).size();
+    var repairers = _(Game.creeps).filter({memory: {role: 'repairer'}}).size();
+    var movers = _(Game.creeps).filter({memory: {role: 'mover'}}).size();
     
 	var roomControllerObject = Game.spawns.Spawn1.room.controller
 	var controllerLevel = roomControllerObject.level;
@@ -32,16 +32,16 @@ module.exports.loop = function () {
     
     if (harvesters < (source0Points + source1Points)) {
         if (movers < 2){
-			if (harvesters < source0Points) {
+			if ( _(Game.creeps).filter({memory: {source: '0'}}).size() < source0Points) {
 				Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY, WORK], null, {role: 'harvester', source: '0' } );}
 			else {
 				Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY, WORK], null, {role: 'harvester', source: '1' } );}
 		}
         else {
-			if (harvesters < source0Points) {
-				Game.spawns.Spawn1.createCreep( [MOVE, CARRY, WORK], null, {role: 'harvester', soucre: '0' } );}
+			if ( _(Game.creeps).filter({memory: {source: '0'}}).size() < source0Points) < source0Points) {
+				Game.spawns.Spawn1.createCreep( [MOVE, CARRY, WORK], null, {role: 'harvester', source: '0' } );}
 			else {
-				Game.spawns.Spawn1.createCreep( [MOVE, CARRY, WORK], null, {role: 'harvester', soucre: '1' } );}
+				Game.spawns.Spawn1.createCreep( [MOVE, CARRY, WORK], null, {role: 'harvester', source: '1' } );}
 		}
     }
     else if(movers < harvesters) {
