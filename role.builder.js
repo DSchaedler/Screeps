@@ -1,9 +1,9 @@
 var roleRepairer = require('role.repairer');
 
 var roleBuilder = {
-    run: function(creep) {
+    run: function(creep, loopCount) {
         if(creep.carry.energy != 0) {
-			if (main.loopCount >= 5 ){
+			if (loopCount >= 5 ){
 				var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 				targets.sort();}
 			if(targets.length > 0) {
