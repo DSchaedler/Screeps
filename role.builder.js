@@ -2,7 +2,7 @@ var roleRepairer = require('role.repairer');
 
 var roleBuilder = {
     run: function(creep) {
-        if(creep.carry.energy > (creep.carryCapacity / 2) {
+        if(creep.carry.energy > (creep.carryCapacity / 2)) {
 			var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 			targets.sort();
 			if(targets.length > 0) {
