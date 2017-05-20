@@ -1,5 +1,4 @@
 var roleRepairer = require('role.repairer');
-var main = require('main');
 
 var roleBuilder = {
     run: function(creep) {
