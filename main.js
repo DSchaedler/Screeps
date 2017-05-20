@@ -59,9 +59,9 @@ module.exports.loop = function () {
     
     function defendRoom() {
         
-        var hostiles = Game.rooms['roomID'].find(FIND_HOSTILE_CREEPS);
-		var hurtCreeps = Game.rooms['roomID'].find(FIND_MY_CREEPS, {filter: creeps => creeps.hits < creeps.hitsmax});
-        var towers = Game.rooms['roomID'].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+        var hostiles = Game.rooms[roomID].find(FIND_HOSTILE_CREEPS);
+		var hurtCreeps = Game.rooms[roomID].find(FIND_MY_CREEPS, {filter: creeps => creeps.hits < creeps.hitsmax});
+        var towers = Game.rooms[roomID].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
         
         if(hostiles.length > 0) {
             var username = hostiles[0].owner.username;
