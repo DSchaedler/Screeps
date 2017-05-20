@@ -9,4 +9,5 @@
  * make movers not waste time. save harvester to collect from in memory.
  * find a better structure for harvester spawning code
  * movers prioritize dropped energy
+ * better pathing using room.serializePath();
 **/
