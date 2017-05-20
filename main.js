@@ -52,7 +52,7 @@ module.exports.loop = function () {
 				Game.spawns.Spawn1.createCreep( [MOVE, CARRY, WORK], null, {role: 'harvester', source: '1' } );}
 		}
     }
-    else if(movers < harvesters) {
+    else if(movers < harvesters + 1) {
         Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY], null, { role: 'mover' } );}
 	else if(upgraders < Math.floor(movers / 2)) {
 		Game.spawns.Spawn1.createCreep( [WORK, CARRY, MOVE], null, { role: 'upgrader' } );}
