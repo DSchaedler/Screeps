@@ -32,9 +32,17 @@ module.exports.loop = function () {
     
     if (harvesters < (source1Points)) {
         if (movers < 2){
-            Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY, WORK], null, {role: 'harvester' } );}
+			if (harvesters < source1Points) {
+				Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY, WORK], null, {role: 'harvester', source: '0' } );}
+			else {
+				Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY, WORK], null, {role: 'harvester', source: '1' } );}
+		}
         else {
-            Game.spawns.Spawn1.createCreep( [MOVE, CARRY, WORK], null, {role: 'harvester', soucre: 0 } );}
+			if (harvesters < source1Points) {
+				Game.spawns.Spawn1.createCreep( [MOVE, CARRY, WORK], null, {role: 'harvester', soucre: '0' } );}
+			else {
+				Game.spawns.Spawn1.createCreep( [MOVE, CARRY, WORK], null, {role: 'harvester', soucre: '1' } );}
+		}
     }
     else if(movers < harvesters) {
         Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY], null, { role: 'mover' } );}
@@ -48,7 +56,7 @@ module.exports.loop = function () {
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
         if(creep.memory.role == 'harvester') {
-            roleHarvester.run(creep, 1);}
+            roleHarvester.run(creep, parseInt(source);}
         if(creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);}
         if(creep.memory.role == 'builder') {
