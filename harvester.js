@@ -2,7 +2,7 @@ module.exports = function (creep) {
     if(creep.energy === creep.energyCapacity) {
 	    creep.memory.source = null;
 		creep.moveTo(Game.spawns.Spawn1);
-		creep.transfer(Game.spawns.Spawn1);
+		creep.transferEnergy(Game.spawns.Spawn1);
 		return;
     }
     
