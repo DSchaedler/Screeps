@@ -1,39 +1,82 @@
-var roleHarvester = require('role.harvester');
-var roleUpgrader = require('role.upgrader');
-var roleBuilder = require('role.builder');
-var roleRepairer = require('role.repairer');
-var roleMover = require('role.mover');
+var builder = require('builder');
+var guard = require('guard');
+var harvester = require('harvester');
+var healer = require('healer');
 
-const roomID = 'E13N66';
-var sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
-    
-    if (harvesters < (sources.length)) {
-        if (movers < 2){
-            Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY, WORK], null, {role: 'harvester' } );}
-        else {
-            Game.spawns.Spawn1.createCreep( [MOVE, CARRY, WORK], null, {role: 'harvester' } );}
+var harvesters = [];
+var guards = [];
+var builders = [];
+var healers = [];
+for (var i in Game.creeps) {
+    if(Game.creeps[i].memory.role == 'harvester') {
+        harvesters.push(Game.creeps[i]);
     }
-    else if(movers < harvesters) {
-        Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY], null, { role: 'mover' } );}
-	else if(upgraders < sources.length * 1) {
-		Game.spawns.Spawn1.createCreep( [WORK, CARRY, MOVE], null, { role: 'upgrader' } );}
-    else if(builders < (sources.length * 2)) {
-        Game.spawns.Spawn1.createCreep( [WORK, CARRY, MOVE, MOVE], null, { role: 'builder' } );}
-    else if(repairers < (sources.length * 1) && controllerLevel > 1) {
-        Game.spawns.Spawn1.createCreep( [WORK, CARRY, MOVE, MOVE], null, { role: 'repairer' } );}
-    
-    for(var name in Game.creeps) {
-        var creep = Game.creeps[name];
-        if(creep.memory.role == 'harvester') {
-            roleHarvester.run(creep, 1);}
-        if(creep.memory.role == 'upgrader') {
-            roleUpgrader.run(creep);}
-        if(creep.memory.role == 'builder') {
-            roleBuilder.run(creep);}
-        if(creep.memory.role == 'repairer') {
-            roleRepairer.run(creep);}
-        if(creep.memory.role == 'mover') {
-            roleMover.run(creep);}
+    if(Game.creeps[i].memory.role == 'guard') {
+        guards.push(Game.creeps[i]);
+    }
+    if(Game.creeps[i].memory.role == 'builder') {
+        builders.push(Game.creeps[i]);
+    }
+    if(Game.creeps[i].memory.role == 'healer') {
+        healers.push(Game.creeps[i]);
+    }
+}
 
+if(harvesters.length < 4) {
+    Game.spawns.Spawn1.createCreep([Game.WORK, Game.CARRY, Game.MOVE], null, {role: 'harvester'});
+} else {
+    
+    if ((guards.length + healers.length) / harvesters.length < 0.8) {
+        if (guards.length < 1) {
+            Game.spawns.Spawn1.createCreep([Game.TOUGH, Game.MOVE, Game.ATTACK, Game.MOVE, Game.ATTACK], null, {role: 'guard'});
+        } else if (healers.length / guards.length < 0.5) {
+            Game.spawns.Spawn1.createCreep([Game.HEAL, Game.MOVE], null, {role: 'healer'});
+        } else {
+            Game.spawns.Spawn1.createCreep([Game.TOUGH, Game.MOVE, Game.ATTACK, Game.MOVE, Game.ATTACK], null, {role: 'guard'});
+        }
+    } else {
+        Game.spawns.Spawn1.createCreep([Game.WORK, Game.CARRY, Game.MOVE], null, {role: 'harvester'});
+    }
+}
+
+
+
+/*if(harvesters.length < 3) {
+    Game.spawns.Spawn1.createCreep([Game.WORK, Game.CARRY, Game.MOVE], null, {role: 'harvester'});
+} else if(guards.length < 2) {
+    Game.spawns.Spawn1.createCreep([Game.ATTACK, Game.ATTACK, Game.TOUGH, Game.MOVE, Game.MOVE], null, {role: 'guard'});
+} else if(harvesters.length < 5) {
+    Game.spawns.Spawn1.createCreep([Game.WORK, Game.CARRY, Game.MOVE], null, {role: 'harvester'});
+} else if(healers.length < 1) {
+    Game.spawns.Spawn1.createCreep([Game.HEAL, Game.TOUGH, Game.MOVE], null, {role: 'healer'});
+} else if(guards.length < 3) {
+    Game.spawns.Spawn1.createCreep([Game.ATTACK, Game.ATTACK, Game.TOUGH, Game.MOVE, Game.MOVE], null, {role: 'guard'});
+} else if(guards.length < 6) {
+    Game.spawns.Spawn1.createCreep([Game.ATTACK, Game.ATTACK, Game.TOUGH, Game.MOVE, Game.MOVE], null, {role: 'guard'});
+}*/
+    
+    
+/*} else if(builders.length < 1) {
+    Game.spawns.Spawn1.createCreep([Game.WORK, Game.WORK, Game.CARRY, Game.MOVE], null, {role: 'builder'});
+}*/
+
+
+for(var name in Game.creeps) {
+	var creep = Game.creeps[name];
+
+	if(creep.memory.role == 'harvester') {
+		harvester(creep);
+	}
+
+	if(creep.memory.role == 'builder') {
+	    builder(creep);
+	}
+	
+	if(creep.memory.role == 'guard') {
+	    guard(creep);
+    }
+	
+	if(creep.memory.role == 'healer') {
+	    healer(creep);
     }
 }
