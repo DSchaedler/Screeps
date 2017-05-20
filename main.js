@@ -7,6 +7,8 @@ var roleRepairer = require('role.repairer');
 var roleMover = require('role.mover');
 
 const roomID = 'E13N66';
+const source0Points = 1;
+const source1Points = 3;
 
 module.exports.loop = function () {
     for(var i in Memory.creeps) {
@@ -28,7 +30,7 @@ module.exports.loop = function () {
 	
 	var sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
     
-    if (harvesters < (sources.length)) {
+    if (harvesters < (source0Points + source1Points)) {
         if (movers < 2){
             Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY, WORK], null, {role: 'harvester' } );}
         else {
