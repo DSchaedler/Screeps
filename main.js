@@ -13,6 +13,8 @@ const sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
 const source0Points = 1;
 const source1Points = 4;
 
+int loopCount = 0;
+
 
 module.exports.loop = function () {
     for(var i in Memory.creeps) {
@@ -23,15 +25,18 @@ module.exports.loop = function () {
     
     defendRoom();
     
-    var harvesters = _(Game.creeps).filter({memory: {role: 'harvester'}}).size();
-	var source0Harv = _(Game.creeps).filter({memory: {source: '0'}}).size();
-    var upgraders = _(Game.creeps).filter({memory: {role: 'upgrader'}}).size();
-    var builders = _(Game.creeps).filter({memory: {role: 'builder'}}).size();
-    var repairers = _(Game.creeps).filter({memory: {role: 'repairer'}}).size();
-    var movers = _(Game.creeps).filter({memory: {role: 'mover'}}).size();
-    
-	var controllerLevel = roomControllerObject.level;
-	
+	loopCount = loopCount + 1;
+	while (loopCount > 5) {
+		var harvesters = _(Game.creeps).filter({memory: {role: 'harvester'}}).size();
+		var source0Harv = _(Game.creeps).filter({memory: {source: '0'}}).size();
+		var upgraders = _(Game.creeps).filter({memory: {role: 'upgrader'}}).size();
+		var builders = _(Game.creeps).filter({memory: {role: 'builder'}}).size();
+		var repairers = _(Game.creeps).filter({memory: {role: 'repairer'}}).size();
+		var movers = _(Game.creeps).filter({memory: {role: 'mover'}}).size();
+		
+		var controllerLevel = roomControllerObject.level;
+		loopCount = 0;
+	}
     
     if (harvesters < (source0Points + source1Points)) {
         if (movers < 2){
