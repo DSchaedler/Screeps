@@ -13,7 +13,7 @@ const sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
 const source0Points = 1;
 const source1Points = 4;
 
-int loopCount = 0;
+var loopCount = 0;
 
 
 module.exports.loop = function () {
