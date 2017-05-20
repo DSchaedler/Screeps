@@ -1,3 +1,5 @@
+require('lodash');
+
 module.exports = function (creep) {
     if(creep.energy === creep.energyCapacity) {
 	    creep.memory.source = null;
