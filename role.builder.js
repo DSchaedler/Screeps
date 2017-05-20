@@ -14,7 +14,7 @@ var roleBuilder = {
 					creep.moveTo(targets[0]);}
 			}
 			else {
-				roleRepairer.run(creep);}
+				roleRepairer.run(creep. loopCount);}
 		}	
     }
 };
