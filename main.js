@@ -56,7 +56,7 @@ module.exports.loop = function () {
         Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY], null, { role: 'mover' } );}
 	else if(upgraders < Math.floor(movers / 2)) {
 		Game.spawns.Spawn1.createCreep( [WORK, CARRY, MOVE], null, { role: 'upgrader' } );}
-    else if(builders < movers) {
+    else if(builders < Math.floor(movers /2) {
         Game.spawns.Spawn1.createCreep( [WORK, CARRY, MOVE, MOVE], null, { role: 'builder' } );}
     else if(repairers < (Math.floor(movers / 2)) && controllerLevel > 1) {
         Game.spawns.Spawn1.createCreep( [WORK, CARRY, MOVE, MOVE], null, { role: 'repairer' } );}
