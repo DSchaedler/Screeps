@@ -20,6 +20,7 @@ module.exports.loop = function () {
     defendRoom();
     
     var harvesters = _(Game.creeps).filter({memory: {role: 'harvester'}}).size();
+	var source0Harv = _(Game.creeps).filter({memory: {source: '0'}}).size();
     var upgraders = _(Game.creeps).filter({memory: {role: 'upgrader'}}).size();
     var builders = _(Game.creeps).filter({memory: {role: 'builder'}}).size();
     var repairers = _(Game.creeps).filter({memory: {role: 'repairer'}}).size();
@@ -32,13 +33,13 @@ module.exports.loop = function () {
     
     if (harvesters < (source0Points + source1Points)) {
         if (movers < 2){
-			if ( _(Game.creeps).filter({memory: {source: '0'}}).size() < source0Points) {
+			if ( source0Harv < source0Points) {
 				Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY, WORK], null, {role: 'harvester', source: '0' } );}
 			else {
 				Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY, WORK], null, {role: 'harvester', source: '1' } );}
 		}
         else {
-			if ( _(Game.creeps).filter({memory: {source: '0'}}).size() < source0Points) {
+			if ( source0Harv < source0Points) {
 				Game.spawns.Spawn1.createCreep( [MOVE, CARRY, WORK], null, {role: 'harvester', source: '0' } );}
 			else {
 				Game.spawns.Spawn1.createCreep( [MOVE, CARRY, WORK], null, {role: 'harvester', source: '1' } );}
