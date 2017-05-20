@@ -49,11 +49,11 @@ module.exports.loop = function () {
     }
     else if(movers < harvesters) {
         Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY], null, { role: 'mover' } );}
-	else if(upgraders < movers / 2 ) {
+	else if(upgraders < floor(movers / 2)) {
 		Game.spawns.Spawn1.createCreep( [WORK, CARRY, MOVE], null, { role: 'upgrader' } );}
     else if(builders < movers) {
         Game.spawns.Spawn1.createCreep( [WORK, CARRY, MOVE, MOVE], null, { role: 'builder' } );}
-    else if(repairers < (movers / 2) && controllerLevel > 1) {
+    else if(repairers < (floor(movers / 2)) && controllerLevel > 1) {
         Game.spawns.Spawn1.createCreep( [WORK, CARRY, MOVE, MOVE], null, { role: 'repairer' } );}
     
     for(var name in Game.creeps) {
