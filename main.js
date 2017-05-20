@@ -71,7 +71,7 @@ module.exports.loop = function () {
         if(creep.memory.role == 'builder') {
             roleBuilder.run(creep, loopCount);}
         if(creep.memory.role == 'repairer') {
-            roleRepairer.run(creep);}
+            roleRepairer.run(creep, loopCount);}
         if(creep.memory.role == 'mover') {
             roleMover.run(creep);}
     }
