@@ -7,8 +7,12 @@ var roleRepairer = require('role.repairer');
 var roleMover = require('role.mover');
 
 const roomID = 'E13N66';
+const roomControllerObject = Game.spawns.Spawn1.room.controller;
+const sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
+
 const source0Points = 1;
 const source1Points = 4;
+
 
 module.exports.loop = function () {
     for(var i in Memory.creeps) {
@@ -26,10 +30,8 @@ module.exports.loop = function () {
     var repairers = _(Game.creeps).filter({memory: {role: 'repairer'}}).size();
     var movers = _(Game.creeps).filter({memory: {role: 'mover'}}).size();
     
-	var roomControllerObject = Game.spawns.Spawn1.room.controller
 	var controllerLevel = roomControllerObject.level;
 	
-	var sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
     
     if (harvesters < (source0Points + source1Points)) {
         if (movers < 2){
@@ -47,11 +49,11 @@ module.exports.loop = function () {
     }
     else if(movers < harvesters) {
         Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY], null, { role: 'mover' } );}
-	else if(upgraders < sources.length * 1) {
+	else if(upgraders < movers / 2 ) {
 		Game.spawns.Spawn1.createCreep( [WORK, CARRY, MOVE], null, { role: 'upgrader' } );}
-    else if(builders < (sources.length * 2)) {
+    else if(builders < movers) {
         Game.spawns.Spawn1.createCreep( [WORK, CARRY, MOVE, MOVE], null, { role: 'builder' } );}
-    else if(repairers < (sources.length * 1) && controllerLevel > 1) {
+    else if(repairers < (movers / 2) && controllerLevel > 1) {
         Game.spawns.Spawn1.createCreep( [WORK, CARRY, MOVE, MOVE], null, { role: 'repairer' } );}
     
     for(var name in Game.creeps) {
