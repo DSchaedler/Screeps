@@ -4,7 +4,6 @@ var roleBuilder = {
     run: function(creep, loopCount) {
         if(creep.carry.energy != 0) {
 			var targets = [];
-			console.log(loopCount);
 			if (loopCount >= 5 ){
 				var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 				targets.sort();}

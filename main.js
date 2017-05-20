@@ -26,7 +26,6 @@ module.exports.loop = function () {
     defendRoom();
     
 	loopCount = loopCount + 1;
-	console.log(loopCount);
 	if (loopCount >= 5) {
 		var harvesters = _(Game.creeps).filter({memory: {role: 'harvester'}}).size();
 		var source0Harv = _(Game.creeps).filter({memory: {source: '0'}}).size();
