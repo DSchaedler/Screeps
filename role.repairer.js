@@ -1,5 +1,5 @@
 var roleRepairer = {
-    run: function(creep, loopCount) {
+    run: function(creep) {
         if(creep.carry.energy != 0) {
 			var targets = creep.room.find(FIND_STRUCTURES, {
 				filter: object => object.hits < object.hitsMax
