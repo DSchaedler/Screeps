@@ -57,7 +57,7 @@ module.exports.loop = function () {
 		if (source0Mov < source0Harv ){
 			Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY], null, {role: 'mover', source: '0'} );}
 		else {
-			Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY], null, { role: 'mover', source: '1' } );}
+			Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY], null, { role: 'mover', source: '1' } );}}
 	else if(upgraders < Math.floor(1)) {
 		Game.spawns.Spawn1.createCreep( [WORK, CARRY, MOVE], null, { role: 'upgrader' } );}
     else if(builders < Math.floor(movers /2)) {
