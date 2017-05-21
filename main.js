@@ -37,7 +37,6 @@ module.exports.loop = function () {
 		
 		var controllerLevel = roomControllerObject.level;
 		loopCount = 0;
-		Memory.harvesters = harvesters
 	}
     
     if (harvesters < (source0Points + source1Points)) {
