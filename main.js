@@ -38,7 +38,6 @@ module.exports.loop = function () {
 		var controllerLevel = roomControllerObject.level;
 		loopCount = 0;
 		Memory.harvesters = _(Game.creeps).filter({memory: {role: 'harvester'}});
-		Memory.sources = sources
 	}
     
     if (harvesters < (source0Points + source1Points)) {
