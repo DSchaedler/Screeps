@@ -10,7 +10,7 @@ const roomID = 'E13N66';
 const roomControllerObject = Game.spawns.Spawn1.room.controller;
 const sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
 
-const source0Points = 0;
+const source0Points = 1;
 const source1Points = 4;
 
 var loopCount = 0;
