@@ -37,8 +37,8 @@ module.exports.loop = function () {
 		loopCount = 0;
 	}
 	
-	var source0Mov = _(Game.creeps).filter({memory: {source: '0'}}).size();
-	var source0Harv = _(Game.creeps).filter({memory: {source: '0'}}).size();
+	var source0Mov = _(Game.creeps).filter({memory: {role: 'mover', source: '0'}}).size();
+	var source0Harv = _(Game.creeps).filter({memory: {role: 'harvester', source: '0'}}).size();
     
     if (harvesters < (source0Points + source1Points)) {
         if (movers < 2){
