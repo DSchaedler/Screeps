@@ -6,18 +6,21 @@ var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
 var roleMover = require('role.mover');
 
-const roomID = 'E13N66';
-const roomControllerObject = Game.spawns.Spawn1.room.controller;
-const sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
 
-const source0Points = 1;
-const source1Points = 4;
 
 var loopCount = 0;
 
 
 module.exports.loop = function () {
-    for(var i in Memory.creeps) {
+    
+	const roomID = 'E13N66';
+	const roomControllerObject = Game.spawns.Spawn1.room.controller;
+	const sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
+
+	const source0Points = 1;
+	const source1Points = 4;
+	
+	for(var i in Memory.creeps) {
         if(!Game.creeps[i]) {
             delete Memory.creeps[i];
         }
