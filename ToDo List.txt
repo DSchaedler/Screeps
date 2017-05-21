@@ -6,7 +6,6 @@
  * design system to claim and auto-manage new room
  * make code to automaticly build roads.
  * commend myself for some of the smart code I've already written
- * make movers not waste time. save harvester to collect from in memory.
  * find a better structure for harvester spawning code
  * movers prioritize dropped energy
  * better pathing using room.serializePath();

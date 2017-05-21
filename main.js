@@ -53,8 +53,8 @@ module.exports.loop = function () {
 				Game.spawns.Spawn1.createCreep( [MOVE, CARRY, WORK], null, {role: 'harvester', source: '1' } );}
 		}
     }
-    else if(movers < harvesters + 1) {
-		if (source0Mov < source0Harv ){
+    else if(movers < harvesters + 2) {
+		if (source0Mov < source0Harv *2 ){
 			Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY], null, {role: 'mover', source: '0'} );}
 		else {
 			Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY], null, { role: 'mover', source: '1' } );}}
