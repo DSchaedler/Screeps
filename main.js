@@ -33,12 +33,12 @@ module.exports.loop = function () {
 		var repairers = _(Game.creeps).filter({memory: {role: 'repairer'}}).size();
 		var movers = _(Game.creeps).filter({memory: {role: 'mover'}}).size();
 		
-		var source0Mov = _(Game.creeps).filter({memory: {source: '0'}}).size();
-		var source0Harv = _(Game.creeps).filter({memory: {source: '0'}}).size();
-		
 		var controllerLevel = roomControllerObject.level;
 		loopCount = 0;
 	}
+	
+	var source0Mov = _(Game.creeps).filter({memory: {source: '0'}}).size();
+	var source0Harv = _(Game.creeps).filter({memory: {source: '0'}}).size();
     
     if (harvesters < (source0Points + source1Points)) {
         if (movers < 2){
@@ -58,7 +58,7 @@ module.exports.loop = function () {
 		if (source0Mov < source0Harv *2 ){
 			Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY], null, {role: 'mover', source: '0'} );}
 		else {
-			Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY], null, { role: 'mover', source: '1' } );}}
+			Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY], null, {role: 'mover', source: '1'} );}}
 	else if(upgraders < Math.floor(1)) {
 		Game.spawns.Spawn1.createCreep( [WORK, CARRY, MOVE], null, { role: 'upgrader' } );}
     else if(builders < Math.floor(movers /2)) {
