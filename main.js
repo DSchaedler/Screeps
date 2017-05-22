@@ -9,6 +9,9 @@ var roleMover = require('role.mover');
 const roomID = 'E13N66';
 const roomControllerObject = Game.spawns.Spawn1.room.controller;
 
+const source0Points = 1;
+const source1Points = 4;
+
 var loopCount = 0;
 
 //Save source IDs to memory - will allow for better code later.
@@ -27,11 +30,14 @@ for(var roomName in Game.rooms){//Loop through all rooms your creeps/structures 
             //for example you could add a worker counter:
             source.memory.workers = 0;
         }
+    }else{ //The memory already exists so lets add a shortcut to the sources its memory
+        var sources = room.find(FIND_SOURCES);//Find all sources in the current room
+        for(var i in sources){
+            var source = sources[i];
+            source.memory = this.memory.sources[source.id]; //Set the shortcut
+        }
     }
 }
-
-const source0Points = 1;
-const source1Points = 4;
 
 
 const profiler = require ('screeps-profiler');
