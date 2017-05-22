@@ -3,7 +3,7 @@ var roleRepairer = require('role.upgrader');
 var roleRepairer = {
     run: function(creep) {
         if(creep.carry.energy != 0) {
-			var target = creep.pos.findClosest(FIND_STRUCTURES, {
+			var target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
 				filter: function(object){
 					return object.structureType !== STRUCTURE_CONTROLLER && (object.hits > object.hitsMax);
 				}
