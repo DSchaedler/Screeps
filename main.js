@@ -8,7 +8,6 @@ var roleMover = require('role.mover');
 
 const roomID = 'E13N66';
 const roomControllerObject = Game.spawns.Spawn1.room.controller;
-const sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
 
 const source0Points = 1;
 const source1Points = 4;
