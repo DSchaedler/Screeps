@@ -13,5 +13,5 @@ var roleRepairer = {
 				creep.upgradeController(creep.room.controller);}
 		}
 	}
-};
+}
 module.exports = roleRepairer;
