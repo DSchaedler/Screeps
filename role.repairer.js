@@ -4,15 +4,13 @@ var roleRepairer = {
     run: function(creep) {
         if(creep.carry.energy != 0) {
 			var target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-				filter: function(object){
-					return object.structureType !== STRUCTURE_CONTROLLER && (object.hits > object.hitsMax);
-				}
-			});
+			filter: {structureType: STRUCTURE_ROAD}});
+		}
 
-			if (target != null) {
-				if (creep.repair(target) == ERR_NOT_IN_RANGE) {
-					creep.moveTo(target);}
-			}
+		if (target != null) {
+			if (creep.repair(target) == ERR_NOT_IN_RANGE) {
+				creep.moveTo(target);}
+		}
 		}
 	}
 }
