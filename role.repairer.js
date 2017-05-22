@@ -8,6 +8,7 @@ var roleRepairer = {
 			if (target != null) {
 				if (creep.repair(targets) == ERR_NOT_IN_RANGE) {
 					creep.moveTo(target);}
+			}
 			else {
 				creep.moveTo(creep.room.controller);
 				creep.upgradeController(creep.room.controller);}
