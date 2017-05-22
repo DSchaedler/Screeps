@@ -1,17 +1,19 @@
-var roleRepairer = require('role.upgrader');
-
 var roleRepairer = {
     run: function(creep) {
         if(creep.carry.energy != 0) {
-			var target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-				filter: (structure) =>{
-			return (structure.structureType !== STRUCTURE_CONTROLLER);}});
-		}
+			var targets = creep.room.find(FIND_STRUCTURES, {
+				filter: object => object.hits < object.hitsMax
+			});
 
-		if (target != null) {
-			if (creep.repair(target) == ERR_NOT_IN_RANGE) {
-				creep.moveTo(target);}
+			targets.sort((a,b) => a.hits - b.hits);
+
+			if (targets.length > 0) {
+				creep.moveTo(targets[0]);
+				creep.repair(targets[0]);}
+			else {
+				creep.moveTo(creep.room.controller);
+				creep.upgradeController(creep.room.controller);}
 		}
 	}
-}
+};
 module.exports = roleRepairer;
