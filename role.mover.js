@@ -13,7 +13,7 @@ var roleMover = {
 			if (harvesters.length > 0 ) {
 				harvesters.sort(function(a, b){return b.carry.energy - a.carry.energy});
 				creep.moveTo(harvesters[0]);
-				creep.pickup(creep.pos.findClosestByPath(FIND_DROPPED_ENERGY));}
+				creep.pickup(creep.pos.findClosestByRange(FIND_DROPPED_ENERGY));}
             else {
                 creep.moveTo(3,25);}
         }
