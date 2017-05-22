@@ -25,7 +25,7 @@ for(var roomName in Game.rooms){//Loop through all rooms your creeps/structures 
             source.memory = room.memory.sources[source.id] = {}; //Create a new empty memory object for this source
             //Now you can do anything you want to do with this source
             //for example you could add a worker counter:
-            source.memory.workers = 0;
+            source.memory.worksites = Get_Connections(source);
         }
     }
 }
@@ -124,5 +124,82 @@ module.exports.loop = function () {
 					towers.forEach(tower => tower.repair(targets[0]));}
 			}**/
 		}
+		function Get_Connections(source)
+		{
+			var result = [];
+			var North = source.room.lookAt(source.pos.x, source.pos.y - 1);
+			North.forEach(function(object)
+			{
+				if (object.type == LOOK_TERRAIN) 
+				{
+					result[0] = object[LOOK_TERRAIN];
+				}
+			});
+
+			var NorthEast = source.room.lookAt(source.pos.x + 1, source.pos.y - 1);
+			NorthEast.forEach(function(object)
+			{
+				if (object.type == LOOK_TERRAIN) 
+				{
+					result[1] = object[LOOK_TERRAIN];
+				}
+			});
+
+			var NorthWest = source.room.lookAt(source.pos.x - 1, source.pos.y - 1);
+			NorthWest.forEach(function(object)
+			{
+				if (object.type == LOOK_TERRAIN) 
+				{
+					result[2] = object[LOOK_TERRAIN];
+				}
+			});
+
+			var East = source.room.lookAt(source.pos.x + 1, source.pos.y);
+			East.forEach(function(object)
+			{
+				if (object.type == LOOK_TERRAIN) 
+				{
+					result[3] = object[LOOK_TERRAIN];
+				}
+			});
+
+			var South = source.room.lookAt(source.pos.x, source.pos.y + 1);
+			South.forEach(function(object)
+			{
+				if (object.type == LOOK_TERRAIN) 
+				{
+					result[4] = object[LOOK_TERRAIN];
+				}
+			});
+
+			var SouthEast = source.room.lookAt(source.pos.x + 1, source.pos.y + 1);
+			SouthEast.forEach(function(object)
+			{
+				if (object.type == LOOK_TERRAIN) 
+				{
+					result[5] = object[LOOK_TERRAIN];
+				}
+			});
+
+			var SouthWest = source.room.lookAt(source.pos.x - 1, source.pos.y + 1);
+			SouthWest.forEach(function(object)
+			{
+				if (object.type == LOOK_TERRAIN) 
+				{
+					result[6] = object[LOOK_TERRAIN];
+				}
+			});
+
+			var West = source.room.lookAt(source.pos.x - 1, source.pos.y);
+			West.forEach(function(object)
+			{
+				if (object.type == LOOK_TERRAIN) 
+				{
+					result[7] = object[LOOK_TERRAIN];
+				}
+			});
+
+			return result;
+}
 	});
 };
