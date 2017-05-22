@@ -5,7 +5,7 @@ var roleRepairer = {
         if(creep.carry.energy != 0) {
 			var target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
 				filter: (structure) =>{
-			return (structure.structureType !== STRUCTURE_CONTROLLER)}})
+			return (structure.structureType !== STRUCTURE_CONTROLLER);}});
 		}
 
 		if (target != null) {
