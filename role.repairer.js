@@ -1,13 +1,11 @@
 var roleRepairer = {
     run: function(creep) {
         if(creep.carry.energy != 0) {
-			var targets = creep.room.find(FIND_STRUCTURES, {
+			var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {}
 				filter: object => object.hits < object.hitsMax
 			});
 
-			targets.sort((a,b) => a.hits - b.hits);
-
-			if (targets.length > 0) {
+			if (target != null) {
 				creep.moveTo(targets[0]);
 				creep.repair(targets[0]);}
 			else {
