@@ -15,19 +15,13 @@ var loopCount = 0;
 //Lets first add a shortcut prototype to the sources memory:
 Source.prototype.memory = undefined;
 
-for(var roomName in Game.rooms){//Loop through all rooms your creeps/structures are in
-    var room = Game.rooms[roomName];
-    if(!room.memory.sources){//If this room has no sources memory yet
-        room.memory.sources = {}; //Add it
-        var sources = room.find(FIND_SOURCES);//Find all sources in the current room
-        for(var i in sources){
-            var source = sources[i];
-            source.memory = room.memory.sources[source.id] = {}; //Create a new empty memory object for this source
-            //Now you can do anything you want to do with this source
-            //for example you could add a worker counter:
-            source.memory.workers = 0;
-        }
-    }
+if(!roomID.memory.sources){//If this room has no sources memory yet
+	roomID.memory.sources = {}; //Add it
+	var sources = roomID.find(FIND_SOURCES);//Find all sources in the current room
+	for(var i in sources){
+		var source = sources[i];
+		source.memory = roomID.memory.sources[source.id] = {}; //Create a new empty memory object for this source
+	}
 }
 
 const source0Points = 1;
@@ -35,7 +29,7 @@ const source1Points = 4;
 
 
 const profiler = require ('screeps-profiler');
-profiler.enable();
+//profiler.enable();
 
 module.exports.loop = function () {
 	profiler.wrap(function() {
