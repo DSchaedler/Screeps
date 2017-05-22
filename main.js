@@ -6,7 +6,7 @@ var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
 var roleMover = require('role.mover');
 
-const roomID = 'E13N66';
+const roomID = Game.rooms[roomName];
 const roomControllerObject = Game.spawns.Spawn1.room.controller;
 
 var loopCount = 0;
