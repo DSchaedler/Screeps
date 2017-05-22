@@ -1,3 +1,5 @@
+var roleRepairer = require('role.upgrader');
+
 var roleRepairer = {
     run: function(creep) {
         if(creep.carry.energy != 0) {
