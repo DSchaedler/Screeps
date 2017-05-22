@@ -10,8 +10,7 @@ var roleRepairer = {
 					creep.moveTo(target);}
 			}
 			else {
-				creep.moveTo(creep.room.controller);
-				creep.upgradeController(creep.room.controller);}
+				roleUpgrader.run(creep);}
 		}
 	}
 }
