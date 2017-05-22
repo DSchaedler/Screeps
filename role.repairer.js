@@ -6,7 +6,7 @@ var roleRepairer = {
 			});
 
 			if (target != null) {
-				if (creep.repair(targets) == ERR_NOT_IN_RANGE) {
+				if (creep.repair(target) == ERR_NOT_IN_RANGE) {
 					creep.moveTo(target);}
 			}
 			else {
