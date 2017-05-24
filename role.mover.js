@@ -12,7 +12,7 @@ var roleMover = {
             }
 			if (harvesters.length > 0 ) {
 				harvesters.sort(function(a, b){return b.carry.energy - a.carry.energy});
-				creep.moveTo(harvesters[0], {reusePath: 50}, {visualizePathStyle: {stroke: '#fff'}});
+				creep.moveTo(harvesters[0], {visualizePathStyle: {stroke: '#fff'}});
 				creep.pickup(creep.pos.findClosestByRange(FIND_DROPPED_ENERGY));}
             else {
                 creep.moveTo(3,25);}
@@ -28,7 +28,7 @@ var roleMover = {
 					}
 				}
 				if (transferTo.length > 0) {
-					creep.moveTo(transferTo[0], {reusePath: 50});}
+					creep.moveTo(transferTo[0]);}
 			    for( i = 0; i < transferTo.length; i++ ) {
 				    creep.transfer(transferTo[i], RESOURCE_ENERGY);}
 				if(transferTo.length == 0) {
@@ -41,12 +41,12 @@ var roleMover = {
 				}
 				if(transferTo.length > 0) {
 					if(creep.transfer(transferTo[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-						creep.moveTo(transferTo[0], {reusePath: 50});}
+						creep.moveTo(transferTo[0]);}
 				}
             }
             else if (Game.spawns.Spawn1.energy < Game.spawns.Spawn1.energyCapacity) {
                 if(creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(Game.spawns.Spawn1, {reusePath: 50});}
+                    creep.moveTo(Game.spawns.Spawn1);}
             }
         }
     }
