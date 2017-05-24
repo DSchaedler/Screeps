@@ -28,7 +28,7 @@ var roleMover = {
 					}
 				}
 				if (transferTo.length > 0) {
-					creep.moveTo(transferTo[0], {reusePath: 50);}
+					creep.moveTo(transferTo[0], {reusePath: 50};}
 			    for( i = 0; i < transferTo.length; i++ ) {
 				    creep.transfer(transferTo[i], RESOURCE_ENERGY);}
 				if(transferTo.length == 0) {
@@ -46,7 +46,7 @@ var roleMover = {
             }
             else if (Game.spawns.Spawn1.energy < Game.spawns.Spawn1.energyCapacity) {
                 if(creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(Game.spawns.Spawn1, {reusePath: 50);}
+                    creep.moveTo(Game.spawns.Spawn1, {reusePath: findClosestByRange;}
             }
         }
     }
