@@ -87,8 +87,7 @@ module.exports.loop = function () {
 			
 			var hostiles = Game.rooms[roomID].find(FIND_HOSTILE_CREEPS);
 			var hurtCreeps = Game.rooms[roomID].find(FIND_MY_CREEPS, {filter: creeps => creeps.hits < creeps.hitsmax});
-			var towers = Game.rooms[roomID].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
-			
+			var towers = Game.rooms[roomID].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});			
 			if(hostiles.length > 0) {
 				var username = hostiles[0].owner.username;
 				Game.notify(`User ${username} spotted in room ${roomID}. Activiating Turrets.`);
@@ -96,14 +95,14 @@ module.exports.loop = function () {
 			}
 			else if (hurtCreeps.length > 0) {
 				towers.forEach(tower => tower.heal(hurtCreeps[0]));
-			}/**
+			}
 			else {
-				var targets =Game.rooms['W34S31'].find(FIND_STRUCTURES, { filter: object => object.hits < object.hitsMax	});
+				var targets = Game.rooms[roomID].find(FIND_STRUCTURES, { filter: object => object.hits < object.hitsMax	});
 				targets.sort((a,b) => a.hits - b.hits);
 		
 				if (targets.length > 0) {
 					towers.forEach(tower => tower.repair(targets[0]));}
-			}**/
+			}
 		}
 	});
 };
