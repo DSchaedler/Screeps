@@ -30,7 +30,7 @@ module.exports.loop = function () {
 		
 		loopCount = loopCount + 1;
 		if (loopCount >= 5) {
-			room.memory.harvesters = var harvesters = _(Game.creeps).filter({memory: {role: 'harvester'}}).size();
+			var harvesters = _(Game.creeps).filter({memory: {role: 'harvester'}}).size();
 			var upgraders = _(Game.creeps).filter({memory: {role: 'upgrader'}}).size();
 			var builders = _(Game.creeps).filter({memory: {role: 'builder'}}).size();
 			var repairers = _(Game.creeps).filter({memory: {role: 'repairer'}}).size();
