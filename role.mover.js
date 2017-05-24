@@ -41,7 +41,7 @@ var roleMover = {
 				}
 				if(transferTo.length > 0) {
 					if(creep.transfer(transferTo[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-						creep.moveTo(transferTo[0], {reusePath: 50}, {visualizePathStyle});}
+						creep.moveTo(transferTo[0], {reusePath: 50, visualizePathStyle});}
 				}
             }
             else if (Game.spawns.Spawn1.energy < Game.spawns.Spawn1.energyCapacity) {
