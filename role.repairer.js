@@ -8,7 +8,7 @@ var roleRepairer = {
 			targets.sort((a,b) => a.hits - b.hits);
 
 			if (targets.length > 0) {
-				creep.moveTo(targets[0]);
+				creep.moveTo(targets[0], {reusePath: 10});
 				creep.repair(targets[0]);}
 			else {
 				creep.moveTo(creep.room.controller);
