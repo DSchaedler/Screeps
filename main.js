@@ -27,6 +27,12 @@ module.exports.loop = function () {
 		}
 		
 		defendRoom();
+		try {
+			new RoomVisual('W1N1').text("Target💥", 10, 15, {color: 'green', font: 0.8});
+		}
+		catch (err) {
+			console.log('RoomVisual failed::\n\n' + err);
+		}
 		
 		loopCount = loopCount + 1;
 		if (loopCount >= 5) {
