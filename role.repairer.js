@@ -13,7 +13,7 @@ var roleRepairer = {
                 }
             });
 			
-			SR.sort(function(a,b) {return b.hits - a.hits});
+			SR.sort(function(a,b) {return a.hits - b.hits});
 			
 			creep.moveTo(SR[0]);
 			creep.repair(SR[0]);
