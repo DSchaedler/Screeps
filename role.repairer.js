@@ -6,8 +6,16 @@ var roleRepairer = {
 			loopCount = loopCount + 1;
 			if(loopCount > 15) {
 				var fixThis = creep.room.find(FIND_STRUCTURES, {
-					filter: object => object.hits < object.hitsMax
-				});
+					filter: function(object){
+						if(oject.structureType == STRUCTURE_CONTROLLER){
+							return false;
+						}
+						if (object.hits > object.hitsMax - 1){
+							return false;
+						}
+						return true;
+				})}
+						
 				var targets = [fixThis];
 
 				targets.sort((a,b) => a.hits - b.hits);
