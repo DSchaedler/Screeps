@@ -3,7 +3,7 @@ var roleRepairer = {
 		loopCount = 0
 		if(creep.carry.energy != 0) {
 			loopCount = loopCount + 1;
-			if(loopCount > 15) {}
+			if(loopCount > 15) {
 				var fixThis = creep.room.find(FIND_STRUCTURES, {
 					filter: object => object.hits < object.hitsMax
 				});
