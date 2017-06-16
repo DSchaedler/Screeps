@@ -3,7 +3,7 @@ var roleRepairer = {
 		loopCount = 0;
 		targets = [];
 		if(creep.carry.energy != 0) {
-			var SR = creep.pos.findClosest(FIND_STRUCTURES, {
+			var SR = creep.room.find(FIND_STRUCTURES, {
 				filter: function(object){
 					if(object.structureType != STRUCTURE_WALL) {
 						return false;
@@ -13,9 +13,10 @@ var roleRepairer = {
 					}
                     return true;
                 }
-            });     
-		creep.moveTo(SR);
-		creep.repair(SR);
+            });
+			
+			creep.moveTo(SR);
+			creep.repair(SR);
 		} 
 	}
 }
