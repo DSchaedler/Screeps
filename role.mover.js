@@ -13,8 +13,6 @@ var roleMover = {
 			if (harvesters.length > 0 ) {
 				harvesters.sort(function(a, b){return b.carry.energy - a.carry.energy});
 				creep.moveTo(harvesters[0], {reusePath: 50}, {visualizePathStyle: {stroke: '#fff'}})};
-            else {
-                creep.moveTo(3,25);}
         }
         else {
             if(Game.spawns.Spawn1.energy == Game.spawns.Spawn1.energyCapacity) {
