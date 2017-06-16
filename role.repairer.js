@@ -1,12 +1,17 @@
 var roleRepairer = {
+	loopCount = 0
     run: function(creep) {
-        if(creep.carry.energy != 0) {
-			var fixThis = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-				filter: object => object.hits < object.hitsMax
-			});
-			var targets = [fixThis];
+		if(creep.carry.energy != 0) {
+			loopCount = loopCount + 1;
+			if(loopCount > 15) {}
+				var fixThis = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+					filter: object => object.hits < object.hitsMax
+				});
+				var targets = [fixThis];
 
-			targets.sort((a,b) => a.hits - b.hits);
+				targets.sort((a,b) => a.hits - b.hits);
+				loopCount = 0;
+			}
 
 			if (targets.length > 0) {
 				creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#fff'}});
