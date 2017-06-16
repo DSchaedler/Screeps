@@ -1,7 +1,5 @@
 var roleRepairer = {
     run: function(creep) {
-		loopCount = 0;
-		targets = [];
 		if(creep.carry.energy != 0) {
 			var SR = creep.room.find(FIND_STRUCTURES, {
 				filter: function(object){
@@ -15,8 +13,8 @@ var roleRepairer = {
                 }
             });
 			
-			creep.moveTo(SR);
-			creep.repair(SR);
+			creep.moveTo(SR[0]);
+			creep.repair(SR[0]);
 		} 
 	}
 }
