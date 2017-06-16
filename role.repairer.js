@@ -1,6 +1,6 @@
 var roleRepairer = {
-	loopCount = 0
     run: function(creep) {
+		loopCount = 0
 		if(creep.carry.energy != 0) {
 			loopCount = loopCount + 1;
 			if(loopCount > 15) {}
