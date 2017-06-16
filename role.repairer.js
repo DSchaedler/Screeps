@@ -6,12 +6,14 @@ var roleRepairer = {
 					if(object.structureType != STRUCTURE_WALL) {
 						return false;
                     }
-                    if(object.hits > object.hitsMax / 3) {
+                    if(object.hits > object.hitsMax) {
 						return false;
 					}
                     return true;
                 }
             });
+			
+			SR.sort(function(a,b) {return b.hits - a.hits});
 			
 			creep.moveTo(SR[0]);
 			creep.repair(SR[0]);
