@@ -44,18 +44,10 @@ module.exports.loop = function () {
 		var source0Harv = _(Game.creeps).filter({memory: {role: 'harvester', source: '0'}}).size();
 		
 		if (harvesters < (source0Points + source1Points)) {
-			if (movers < 2){
-				if ( source0Harv < source0Points) {
-					Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY, CARRY, WORK], null, {role: 'harvester', source: '0' } );}
-				else {
-					Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY, CARRY, WORK], null, {role: 'harvester', source: '1' } );}
-			}
+			if ( source0Harv < source0Points) {
+				Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY, CARRY, WORK], null, {role: 'harvester', source: '0' } );}
 			else {
-				if ( source0Harv < source0Points) {
-					Game.spawns.Spawn1.createCreep( [MOVE, CARRY, CARRY, CARRY, WORK], null, {role: 'harvester', source: '0' } );}
-				else {
-					Game.spawns.Spawn1.createCreep( [MOVE, CARRY, CARRY, CARRY, WORK], null, {role: 'harvester', source: '1' } );}
-			}
+				Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY, CARRY, WORK], null, {role: 'harvester', source: '1' } );}
 		}
 		else if(movers < harvesters + 2) {
 			if (source0Mov < source0Harv + 1 ){
