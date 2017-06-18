@@ -5,12 +5,12 @@ var roleHarvester = {
         if(creep.carry.energy < creep.carryCapacity) {
             var sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
             if(sources.length >0 && creep.harvest(sources[sourceNumber]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[sourceNumber]);}
+                creep.moveTo(sources[sourceNumber],{visualizePathStyle: {stroke: '#fff'});}
         }
         else if(_(Game.creeps).filter( {memory: { role: 'mover' } } ).size() < 2 ) {
             if (Game.spawns.Spawn1.energy < Game.spawns.Spawn1.energyCapacity) {
                 if(creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(Game.spawns.Spawn1);}
+                    creep.moveTo(Game.spawns.Spawn1, {visualizePathStyle: {stroke: '#fff'});}
             }
         }
         else {
