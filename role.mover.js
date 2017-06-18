@@ -2,7 +2,7 @@ require('lodash');
 
 var roleMover = {
     run: function(creep, source) {
-        if(creep.carry.energy == 0) {
+        if(creep.carry.energy < (creep.carryCapacity /20)) {
             var harvesters = [];
             for(var name in Game.creeps) {
                 var currentCreep = Game.creeps[name];
