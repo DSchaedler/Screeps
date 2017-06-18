@@ -35,6 +35,9 @@ var roleMover = {
 								structure.energy < structure.energyCapacity;
 						}
 					});
+					
+					if (transferTo.length > 0) {
+						transferTo.sort(function(a, b){return (a.energy / a.energyCapacity) - (b.energy / b.energyCapacity)})};
 				}
 				if(transferTo.length > 0) {
 					if(creep.transfer(transferTo[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
