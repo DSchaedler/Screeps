@@ -41,12 +41,12 @@ var roleMover = {
 				}
 				if(transferTo.length > 0) {
 					if(creep.transfer(transferTo[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-						creep.moveTo(transferTo[0], {reusePath: 10});}
+						creep.moveTo(transferTo[0], {visualizePathStyle: {stroke: '#c9c906'}});}
 				}
             }
             else if (Game.spawns.Spawn1.energy < Game.spawns.Spawn1.energyCapacity) {
                 if(creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(Game.spawns.Spawn1, {reusePath: 10});}
+                    creep.moveTo(Game.spawns.Spawn1, {visualizePathStyle: {stroke: '#c9c906'}});}
             }
         }
     }
