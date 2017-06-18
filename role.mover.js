@@ -12,7 +12,7 @@ var roleMover = {
             }
 			if (harvesters.length > 0 ) {
 				harvesters.sort(function(a, b){return (b.carry.energy / b.carryCapacity) - (a.carry.energy / a.carryCapacity)});
-				creep.moveTo(harvesters[0], {reusePath: 10}, {visualizePathStyle: {stroke: '#fff'}})};
+				creep.moveTo(harvesters[0], {visualizePathStyle: {stroke: '#fff'}})};
         }
         else {
             if(Game.spawns.Spawn1.energy == Game.spawns.Spawn1.energyCapacity) {
