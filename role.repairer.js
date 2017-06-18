@@ -15,7 +15,7 @@ var roleRepairer = {
 			
 			SR.sort(function(a,b) {return ( (a.hits / a.hitsMax) - (b.hits  / b.hitsMax) ) } );
 			
-			creep.moveTo(SR[0], {visualizePathStyle: {stroke: '#c98606'}});
+			creep.moveTo(SR[0], {visualizePathStyle: {stroke: '#ee9c00'}});
 			creep.repair(SR[0]);
 		} 
 	}
