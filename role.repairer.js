@@ -16,7 +16,7 @@ var roleRepairer = {
                 }
             });
 			
-			SR.sort(function(a,b) {return ( (a.hits + (creep.pos.getRangeTo(a.pos.x, a.pos.y) * 2 ) ) - ( b.hits + (creep.pos.getRangeTo(b.pos.x, b.pos.y) * 2) ) ) } );
+			SR.sort(function(a,b) {return ( (a.hits + (creep.pos.getRangeTo(a.pos.x, a.pos.y) * 5 ) ) - ( b.hits + (creep.pos.getRangeTo(b.pos.x, b.pos.y) * 5) ) ) } );
 			
 			Game.rooms[roomID].visual.circle(SR[0].pos.x, SR[0].pos.y, {radius: 0.5, fill: '#0aa53b'});
 			Game.rooms[roomID].visual.circle(SR[1].pos.x, SR[1].pos.y, {radius: 0.5, fill: '#c9c906'});
