@@ -10,8 +10,8 @@ const roomID = 'W99S43';
 const roomControllerObject = Game.spawns.Spawn1.room.controller;
 const sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
 
-const source0Points = ceil(4 / 2);
-const source1Points = ceil(3 / 2);
+const source0Points = round(4 / 2);
+const source1Points = round(3 / 2);
 
 var loopCount = 0;
 
@@ -57,7 +57,7 @@ module.exports.loop = function () {
 					Game.spawns.Spawn1.createCreep( [MOVE, CARRY, CARRY, CARRY, WORK], null, {role: 'harvester', source: '1' } );}
 			}
 		}
-		else if(movers < harvesters) {
+		else if(movers < harvesters + 2) {
 			if (source0Mov < source0Harv + 1 ){
 				Game.spawns.Spawn1.createCreep( [MOVE, MOVE, CARRY, CARRY], null, {role: 'mover', source: '0'} );}
 			else {
