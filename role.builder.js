@@ -7,7 +7,7 @@ var roleBuilder = {
 			var target = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
 			if (target != null) {
 				if (creep.build(target) == ERR_NOT_IN_RANGE){
-					creep.moveTo(target, {visualizePathStyle: {stroke: '#fff'});}
+					creep.moveTo(target, {visualizePathStyle: {stroke: '#fff'}});}
 			}
 			else {
 				roleRepairer.run(creep);}
