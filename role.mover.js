@@ -17,9 +17,10 @@ var roleMover = {
         else {
             if(Game.spawns.Spawn1.energy == Game.spawns.Spawn1.energyCapacity) {
                 var transferTo = [];
+				
 				for(var name in Game.creeps) {
 					var currentCreep = Game.creeps[name];
-					if(currentCreep.memory.role == 'upgrader' || currentCreep.memory.role == 'builder' || currentCreep.memory.role == 'repairer') { //when assholes are out of the way, un-comment the last two checks.
+					if(currentCreep.memory.role == 'upgrader' || currentCreep.memory.role == 'builder' || currentCreep.memory.role == 'repairer') {
 					    if(currentCreep.carry.energy < (currentCreep.carryCapacity / 3)) {
 					        transferTo.push(currentCreep);}
 					}
@@ -28,6 +29,7 @@ var roleMover = {
 					creep.moveTo(transferTo[0], {reusePath: 10, visualizePathStyle: {stroke: '#fff'}});}
 			    for( i = 0; i < transferTo.length; i++ ) {
 				    creep.transfer(transferTo[i], RESOURCE_ENERGY);}
+				
 				if(transferTo.length == 0) {
 					var transferTo = creep.room.find(FIND_STRUCTURES, {
 						filter: (structure) => {
