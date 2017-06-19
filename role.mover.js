@@ -12,8 +12,7 @@ var roleMover = {
             }
 			if (harvesters.length > 0 ) {
 				harvesters.sort(function(a, b){return (b.carry.energy / b.carryCapacity) - (a.carry.energy / a.carryCapacity)});
-				if(creep.pos.getRangeTo(harvesters[0].x, harvesters[0].y) < 1) {
-					creep.moveTo(harvesters[0], {reusePath: 10, visualizePathStyle: {stroke: '#fff'}})};}
+				creep.moveTo(harvesters[0], {reusePath: 10, visualizePathStyle: {stroke: '#fff'}})};
         }
         else {
             if(Game.spawns.Spawn1.energy == Game.spawns.Spawn1.energyCapacity) {
@@ -25,7 +24,7 @@ var roleMover = {
 					        transferTo.push(currentCreep);}
 					}
 				}
-				if (transferTo.length > 0 && creep.pos.getRangeTo(transferTo[0].x, transferTo[0].y) < 1) {
+				if (transferTo.length > 0) {
 					creep.moveTo(transferTo[0], {reusePath: 10, visualizePathStyle: {stroke: '#fff'}});}
 			    for( i = 0; i < transferTo.length; i++ ) {
 				    creep.transfer(transferTo[i], RESOURCE_ENERGY);}
