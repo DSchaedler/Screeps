@@ -34,7 +34,7 @@ var roleMover = {
 					});
 				}
 				if(transferTo.length > 0) {
-					transferTo.sort(function(a,b) {return ( (a.hits + (creep.pos.getRangeTo(a.pos.x, a.pos.y) * 5 ) ) - ( b.hits + (creep.pos.getRangeTo(b.pos.x, b.pos.y) * 5) ) ) } );
+					transferTo.sort(function(a,b) {return ( (a.energy + (creep.pos.getRangeTo(a.pos.x, a.pos.y) * 5 ) ) - ( b.energy + (creep.pos.getRangeTo(b.pos.x, b.pos.y) * 5) ) ) } );
 					if(creep.transfer(transferTo[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
 						creep.moveTo(transferTo[0], {reusePath: 10, visualizePathStyle: {stroke: '#c9c906'}});}
 				}
