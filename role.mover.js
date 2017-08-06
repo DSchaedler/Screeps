@@ -18,7 +18,7 @@ var roleMover = {
             if(Game.spawns.Spawn1.energy == Game.spawns.Spawn1.energyCapacity) {
                 var transferTo = [];
 				
-				if(transferTo.length == 0)
+				if(transferTo.length == 0) {
 					for(var name in Game.creeps) {
 						var currentCreep = Game.creeps[name];
 						if(currentCreep.memory.role == 'upgrader' || currentCreep.memory.role == 'builder' || currentCreep.memory.role == 'repairer') {
