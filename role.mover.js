@@ -26,6 +26,7 @@ var roleMover = {
 					}
 				}
 				if (transferTo.length > 0) {
+					transferTo.sort(function(a,b) {return ( (a.hits + (creep.pos.getRangeTo(a.pos.x, a.pos.y) * 5 ) ) - ( b.hits + (creep.pos.getRangeTo(b.pos.x, b.pos.y) * 5) ) ) } );
 					creep.moveTo(transferTo[0], {reusePath: 10, visualizePathStyle: {stroke: '#fff'}});}
 			    for( i = 0; i < transferTo.length; i++ ) {
 				    creep.transfer(transferTo[i], RESOURCE_ENERGY);}
