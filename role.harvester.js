@@ -17,7 +17,7 @@ var roleHarvester = {
             var transferTo = [];
             for(var name in Game.creeps) {
                 var currentCreep = Game.creeps[name];
-                if(currentCreep.memory.role == 'mover' || currentCreep.memory.role == 'builder' || currentCreep.memory.role == 'upgrader' || currentCreep.memory.role == 'upgraderCharger' || currentCreep.memory.role == 'repairer') {
+                if(currentCreep.memory.role == 'mover' && currentCreep.memory.source == sourceNumber) {
                     transferTo.push(currentCreep);}
             }
 			for( i = 0; i < transferTo.length; i++) {
