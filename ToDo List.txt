@@ -9,5 +9,4 @@
  * find a better structure for harvester spawning code
  * movers prioritize dropped energy
  * better pathing using room.serializePath();
- * Have Movers use distance wieghting like the repairer does
 **/
