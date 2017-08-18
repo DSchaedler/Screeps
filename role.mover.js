@@ -26,7 +26,7 @@ var roleMover = {
 								transferTo.push(currentCreep);}
 						}
 						if(currentCreep.memory.role == 'repairer') {
-							if(currentCreep.carry.energy == 0)) {
+							if(currentCreep.carry.energy == 0) {
 								transferTo.push(currentCreep);}
 						}
 					}
