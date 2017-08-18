@@ -80,9 +80,11 @@ module.exports.loop = function () {
 			var hostiles = Game.rooms[roomID].find(FIND_HOSTILE_CREEPS);
 			var hurtCreeps = Game.rooms[roomID].find(FIND_MY_CREEPS, {filter: creeps => creeps.hits < creeps.hitsmax});
 			var towers = Game.rooms[roomID].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});			
-			if(hostiles.length > 0) {
+			if(hostiles.length >) {
 				var username = hostiles[0].owner.username;
-				Game.notify(`User ${username} spotted in room ${roomID}. Activiating Turrets.`);
+				if(username != "Invader") {
+					Game.notify(`User ${username} spotted in room ${roomID}. Activiating Turrets.`);
+				}
 				towers.forEach(tower => tower.attack(hostiles[0]));
 			}
 			else if (hurtCreeps.length > 0) {
