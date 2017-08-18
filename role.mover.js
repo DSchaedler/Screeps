@@ -21,8 +21,12 @@ var roleMover = {
 				if(transferTo.length == 0) {
 					for(var name in Game.creeps) {
 						var currentCreep = Game.creeps[name];
-						if(currentCreep.memory.role == 'upgrader' || currentCreep.memory.role == 'builder' || currentCreep.memory.role == 'repairer') {
+						if(currentCreep.memory.role == 'upgrader' || currentCreep.memory.role == 'builder') {
 							if(currentCreep.carry.energy < (currentCreep.carryCapacity / 3)) {
+								transferTo.push(currentCreep);}
+						}
+						if(currentCreep.memory.role == 'repairer') {
+							if(currentCreep.carry.energy == 0)) {
 								transferTo.push(currentCreep);}
 						}
 					}
