@@ -6,12 +6,12 @@ var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
 var roleMover = require('role.mover');
 
-const roomID = 'W99S43';
+const roomID = 'E38N56';
 const roomControllerObject = Game.spawns.Spawn1.room.controller;
 const sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
 
-const source0Points = Math.ceil(4 / 2);
-const source1Points = Math.ceil(3 / 2);
+const source0Points = Math.ceil(1 / 2);
+const source1Points = Math.ceil(4 / 2);
 
 var loopCount = 0;
 
@@ -80,23 +80,25 @@ module.exports.loop = function () {
 			var hostiles = Game.rooms[roomID].find(FIND_HOSTILE_CREEPS);
 			var hurtCreeps = Game.rooms[roomID].find(FIND_MY_CREEPS, {filter: creeps => creeps.hits < creeps.hitsmax});
 			var towers = Game.rooms[roomID].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});			
-			if(hostiles.length > 0) {
-				var username = hostiles[0].owner.username;
-				if(username != "Invader") {
-					Game.notify(`User ${username} spotted in room ${roomID}. Activiating Turrets.`);
-				}
-				towers.forEach(tower => tower.attack(hostiles[0]));
-			}
-			else if (hurtCreeps.length > 0) {
-				towers.forEach(tower => tower.heal(hurtCreeps[0]));
-			}
-			else if (towers[0].energy > towers[0].energyCapacity / 2) {
-				var targets = Game.rooms[roomID].find(FIND_STRUCTURES, { filter: object => object.hits < object.hitsMax	});
-				targets.sort((a,b) => a.hits - b.hits);
-		
-				if (targets.length > 0) {
-					towers.forEach(tower => tower.repair(targets[0]));}
-			}
+    		if(towers) {
+    			if(hostiles.length > 0) {
+    				var username = hostiles[0].owner.username;
+    				if(username != "Invader") {
+    					Game.notify(`User ${username} spotted in room ${roomID}. Activiating Turrets.`);
+    				}
+    				towers.forEach(tower => tower.attack(hostiles[0]));
+    			}
+    			else if (hurtCreeps.length > 0) {
+    				towers.forEach(tower => tower.heal(hurtCreeps[0]));
+    			}
+    			else if (towers[0].energy > towers[0].energyCapacity / 2) {
+    				var targets = Game.rooms[roomID].find(FIND_STRUCTURES, { filter: object => object.hits < object.hitsMax	});
+    				targets.sort((a,b) => a.hits - b.hits);
+    		
+    				if (targets.length > 0) {
+    					towers.forEach(tower => tower.repair(targets[0]));}
+    			}
+    		}
 		}
 	});
 };
