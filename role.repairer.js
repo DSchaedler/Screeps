@@ -23,8 +23,10 @@ var roleRepairer = {
     			Game.rooms[roomID].visual.circle(SR[1].pos.x, SR[1].pos.y, {radius: 0.5, fill: '#c9c906'});
     			Game.rooms[roomID].visual.circle(SR[2].pos.x, SR[2].pos.y, {radius: 0.5, fill: '#bd0000'});
 			}
-			creep.moveTo(SR[0], {visualizePathStyle: {stroke: '#ee9c00'}});
-			creep.repair(SR[0]);
+			if(creep.repair(SR[0]) == ERR_NOT_IN_RANGE){
+                creep.moveTo(SR[0], {visualizePathStyle: {stroke: '#ee9c00'}});
+                creep.repair(SR[0]);
+            }
 		} 
 	}
 }
