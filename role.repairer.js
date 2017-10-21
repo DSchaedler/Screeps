@@ -9,7 +9,6 @@ var roleRepairer = {
 					if((object.structureType == STRUCTURE_WALL || object.structureType == STRUCTURE_RAMPART) && (object.hits >= object.hitsMax) ) {
 						return true;
                     }
-                    return false;
                 }
             });
 			
