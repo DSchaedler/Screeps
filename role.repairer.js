@@ -6,16 +6,15 @@ var roleRepairer = {
 		if(creep.carry.energy != 0) {
 			var SR = creep.room.find(FIND_STRUCTURES, {
 				filter: function(object){
-					if(object.structureType != STRUCTURE_WALL && object.structureType != STRUCTURE_RAMPART && object.structureType != STRUCTURE_ROAD) {
-						
+					if(object.structureType == STRUCTURE_ROAD && object.hits <= (object.hitsMax / 4)) {
+                        return false
+                    }
+                    if(object.structureType != STRUCTURE_WALL && object.structureType != STRUCTURE_RAMPART) {
                         return false;
                     }
                     if(object.hits >= object.hitsMax) {
 						return false;
 					}
-                    if(object.structureType == STRUCTURE_ROAD && object.hits <= (object.hitsMax / 4)) {
-                        return false
-                    }
                     return true;
                 }
             });
