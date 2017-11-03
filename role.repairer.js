@@ -7,7 +7,10 @@ var roleRepairer = {
 			var SR = creep.room.find(FIND_STRUCTURES, {
 				filter: function(object){
 					if(object.structureType != STRUCTURE_WALL && object.structureType != STRUCTURE_RAMPART && object.structureType != STRUCTURE_ROAD) {
-						return false;
+						if(object.structureType == STRUCTURE_ROAD && object.hits <= (object.hitsMax /4)) {
+                            return false
+                        }
+                        return false;
                     }
                     if(object.hits >= object.hitsMax) {
 						return false;
