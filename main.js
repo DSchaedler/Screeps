@@ -26,6 +26,8 @@ module.exports.loop = function () {
 			}
 		}
 		
+		new RoomVisual(roomID).text(("Time: " + Game.time), 24, 21, {align: 'left'});
+		
 		defendRoom();
 		
 		loopCount = loopCount + 1;

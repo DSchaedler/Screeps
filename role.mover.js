@@ -17,6 +17,10 @@ var roleMover = {
         else {
             if(Game.spawns.Spawn1.energy == Game.spawns.Spawn1.energyCapacity) {
                 var transferTo = [];
+				if (creep.memory.target) {
+					transferTo.push(Game.getObjectById(creep.memory.target)); }
+				if ((Game.time % 5) == 5) {
+					transferTo =[]; }
 				
 				if(transferTo.length == 0) {
 					for(var name in Game.creeps) {
@@ -42,8 +46,21 @@ var roleMover = {
 					transferTo.sort(function(a,b) {return ( (a.energy + (creep.pos.getRangeTo(a.pos.x, a.pos.y) * 5 ) ) - ( b.energy + (creep.pos.getRangeTo(b.pos.x, b.pos.y) * 5) ) ) } );
 				}
 				if(transferTo.length > 0) {
-					if(creep.transfer(transferTo[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-						creep.moveTo(transferTo[0], {reusePath: 10, visualizePathStyle: {stroke: '#c9c906'}});}
+					if(_.has(transferTo[0]), 'carry') {
+						if(transferTo[0].carry.energy > (transferTo[0].carryCapacity / 1.1)) { 
+							transferTo = []
+							delete creep.memory.target
+						}
+					}
+				}
+				if(transferTo.length > 0) {
+					creep.memory.target = transferTo[0].id
+					target = transferTo[0]
+					creep.say(target.name)
+					if(creep.transfer(target, RESOURCE_ENERGY) == OK) { delete creep.memory.target }
+										
+					if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+						creep.moveTo(target, {reusePath: 10, visualizePathStyle: {stroke: '#c9c906'}});}
 				}
             }
             else if (Game.spawns.Spawn1.energy < Game.spawns.Spawn1.energyCapacity) {
