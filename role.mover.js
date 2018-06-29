@@ -19,7 +19,7 @@ var roleMover = {
                 var transferTo = [];
 				if (creep.memory.target) {
 					transferTo.push(Game.getObjectById(creep.memory.target)); }
-				if (parseInt(Game.time % 5) == 0) {
+				if (parseInt(Game.time % 15) == 0) {
 					transferTo = [];
 					delete creep.memort.target}
 				
