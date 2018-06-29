@@ -1,7 +1,7 @@
 var roleRepairer = {
     run: function(creep) {
 		
-		const roomID = 'E31N38';
+		const roomID = 'W57S52';
 		
 		if(creep.carry.energy != 0) {
 			var SR = creep.room.find(FIND_STRUCTURES, {

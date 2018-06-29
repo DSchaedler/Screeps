@@ -2,6 +2,9 @@
 
 //contains a list of things yet to be coded
 /**
+ * Run the Find work target once and store target in memory. Then, check if target energy is full. If full, remove target.
+ * 
+ * 
  * optimize code to avoid CPU spkies.
  * design system to claim and auto-manage new room
  * make code to automaticly build roads.

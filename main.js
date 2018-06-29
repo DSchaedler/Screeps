@@ -6,11 +6,11 @@ var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
 var roleMover = require('role.mover');
 
-const roomID = 'E31N38';
+const roomID = 'W57S52';
 const roomControllerObject = Game.spawns.Spawn1.room.controller;
 const sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
 
-const source0Points = Math.ceil(2 / 1.5);
+const source0Points = Math.ceil(4 / 1.5);
 const source1Points = Math.ceil(3 / 1.5);
 
 var loopCount = 0;
