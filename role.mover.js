@@ -22,7 +22,7 @@ var roleMover = {
 				if (parseInt(Game.time % 15) == 0) {
 					transferTo = [];
 					try {delete creep.memort.target}
-					catch {//Holder
+					catch(error) {//Holder
 					}
 				}
 				
