@@ -48,14 +48,14 @@ var roleMover = {
 				}
 				if(transferTo.length > 0) {
 					try {
-    					if(transferTo[0].carry.energy > (transferTo[0].carryCapacity)) { 
+    					if(transferTo[0].carry.energy > (transferTo[0].carryCapacity / 1.3)) { 
     						transferTo = []
     						delete creep.memory.target
     					}
 					}
 					catch(error) { 
 					    try {
-					        if(transferTo[0].energy > (transferTo[0].energyCapacity / 1.1)) { 
+					        if(transferTo[0].energy > (transferTo[0].energyCapacity)) { 
     				        transferTo = []
     				        delete creep.memory.target
 					        }
