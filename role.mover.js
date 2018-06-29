@@ -46,17 +46,40 @@ var roleMover = {
 					transferTo.sort(function(a,b) {return ( (a.energy + (creep.pos.getRangeTo(a.pos.x, a.pos.y) * 5 ) ) - ( b.energy + (creep.pos.getRangeTo(b.pos.x, b.pos.y) * 5) ) ) } );
 				}
 				if(transferTo.length > 0) {
-					if(_.has(transferTo[0]), 'carry') {
-						if(transferTo[0].carry.energy > (transferTo[0].carryCapacity / 1.1)) { 
-							transferTo = []
-							delete creep.memory.target
-						}
+					try {
+    					if(transferTo[0].carry.energy > (transferTo[0].carryCapacity / 1.1)) { 
+    						transferTo = []
+    						delete creep.memory.target
+    					}
 					}
+					catch(error) { 
+					    try {
+					        if(transferTo[0].energy > (transferTo[0].energyCapacity / 1.1)) { 
+    				        transferTo = []
+    				        delete creep.memory.target
+					        }
+					    }
+					    catch(error) {
+					        console.log(error);
+					    }
+					    
+					}
+				
 				}
 				if(transferTo.length > 0) {
-					creep.memory.target = transferTo[0].id
+			        try {
+					    creep.memory.target = transferTo[0].id
+			        }
+			        catch(error) {
+			            //console.log(error);
+			        }
 					target = transferTo[0]
-					creep.say(target.name)
+					try{
+					    creep.say(target.name)
+					}
+					catch(error){
+					    //console.log(error);
+					}
 					if(creep.transfer(target, RESOURCE_ENERGY) == OK) { delete creep.memory.target }
 										
 					if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
