@@ -23,6 +23,8 @@ var roleMover = {
 					transferTo = [];
 					try {delete creep.memort.target}
 				}
+				catch {//Holder
+				}
 				
 				if(transferTo.length == 0) {
 					for(var name in Game.creeps) {
