@@ -5,7 +5,7 @@ var roleRepairer = {
 		
 		if(creep.carry.energy != 0) {
 		creep.say(Math.round((creep.carry.energy / creep.carryCapacity) * 100));
-            if(!creep.memory.target) {
+            if(!creep.memory.target0) {
 			
 				var SR = creep.room.find(FIND_STRUCTURES, {
 					filter: function(object){
