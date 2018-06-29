@@ -38,7 +38,7 @@ var roleRepairer = {
     			if(target1) {Game.rooms[roomID].visual.circle(target1.pos.x, target1.pos.y, {radius: 0.5, fill: '#c9c906'}); }
     			if(target2) {Game.rooms[roomID].visual.circle(target2.pos.x, target2.pos.y, {radius: 0.5, fill: '#bd0000'}); }
 			}
-			if(creep.repair(target0 == OK)) { 
+			if(parseInt(Game.time % 5) == 0) { 
 				delete creep.memory.target0;
 				delete creep.memory.target1
 				delete creep.memory.target2}
