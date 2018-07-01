@@ -82,6 +82,11 @@ var roleMover = {
 						if(target.memory.role){
 							creep.say(target.memory.role);
 						}
+					}
+					catch(error){
+					    //console.log(error);
+					}
+					try{
 						if(target.structureType){
 							creep.say(target.structureType);
 						}
@@ -89,6 +94,7 @@ var roleMover = {
 					catch(error){
 					    //console.log(error);
 					}
+					
 					if(creep.transfer(target, RESOURCE_ENERGY) == OK) { delete creep.memory.target }
 										
 					if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
