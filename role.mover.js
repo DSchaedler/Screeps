@@ -21,7 +21,7 @@ var roleMover = {
 					transferTo.push(Game.getObjectById(creep.memory.target)); }
 				if (parseInt(Game.time % 15) == 0) {
 					transferTo = [];
-					try {delete creep.memort.target}
+					try {delete creep.memory.target}
 					catch(error) {//Holder
 					}
 				}
@@ -79,7 +79,12 @@ var roleMover = {
 			        }
 					target = transferTo[0]
 					try{
-					    creep.say(target.name)
+						if(target.memory.role){
+							creep.say(target.memory.role);
+						}
+						if(target.structureType){
+							creep.say(target.structureType);
+						}
 					}
 					catch(error){
 					    //console.log(error);
@@ -91,6 +96,7 @@ var roleMover = {
 				}
             }
             else if (Game.spawns.Spawn1.energy < Game.spawns.Spawn1.energyCapacity) {
+				creep.say('spawn');
                 if(creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(Game.spawns.Spawn1, {reusePath: 10, visualizePathStyle: {stroke: '#c9c906'}});}
             }

@@ -4,7 +4,6 @@ var roleRepairer = {
 		const roomID = 'W57S52';
 		
 		if(creep.carry.energy != 0) {
-		creep.say(Math.round((creep.carry.energy / creep.carryCapacity) * 100));
             if(!creep.memory.target0) {
 			
 				var SR = creep.room.find(FIND_STRUCTURES, {
@@ -23,10 +22,11 @@ var roleRepairer = {
 				});
 				
 				SR.sort(function(a,b) {return ( (a.hits + (creep.pos.getRangeTo(a.pos.x, a.pos.y) * 5 ) ) - ( b.hits + (creep.pos.getRangeTo(b.pos.x, b.pos.y) * 5) ) ) } );
-				
 				creep.memory.target0 = SR[0].id
-				creep.memory.target1 = SR[1].id
-				creep.memory.target2 = SR[2].id
+				if (creep.memory.target0) {
+    				creep.memory.target1 = SR[1].id
+    				creep.memory.target2 = SR[2].id
+				}
 			}
 			
 			target0 = Game.getObjectById(creep.memory.target0)
@@ -40,9 +40,9 @@ var roleRepairer = {
 			}
 			if(parseInt(Game.time % 5) == 0) { 
 				delete creep.memory.target0;
-				delete creep.memory.target1
-				delete creep.memory.target2}
-			if(creep.repair(target0) == ERR_NOT_IN_RANGE){
+				delete creep.memory.target1;
+				delete creep.memory.target2; }
+			if(creep.repair(target0) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target0, {visualizePathStyle: {stroke: '#ee9c00'}});
                 
             }
