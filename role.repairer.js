@@ -1,7 +1,7 @@
 var roleRepairer = {
     run: function(creep) {
 		
-		const roomID = 'W57S52';
+		const roomID = Memory.roomController.room.name;
 		
 		if(creep.carry.energy != 0) {
             if(!creep.memory.target0) {
@@ -22,7 +22,9 @@ var roleRepairer = {
 				});
 				
 				SR.sort(function(a,b) {return ( (a.hits + (creep.pos.getRangeTo(a.pos.x, a.pos.y) * 5 ) ) - ( b.hits + (creep.pos.getRangeTo(b.pos.x, b.pos.y) * 5) ) ) } );
-				creep.memory.target0 = SR[0].id
+				if(SR[0]){
+				    creep.memory.target0 = SR[0].id
+				}
 				if (creep.memory.target0) {
     				creep.memory.target1 = SR[1].id
     				creep.memory.target2 = SR[2].id
