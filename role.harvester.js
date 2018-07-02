@@ -3,9 +3,9 @@ require('lodash');
 var roleHarvester = {
     run: function(creep, sourceNumber) {
         if(creep.carry.energy < creep.carryCapacity) {
-            var sources =  Memory.sources
-            if(sources.length > 0 && creep.harvest(Game.getObjectById(sources[sourceNumber])) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(Game.getObjectById(sources[sourceNumber]), {visualizePathStyle: {stroke: '#48c906'}});}
+            var sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
+            if(sources.length >0 && creep.harvest(sources[sourceNumber]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[sourceNumber],{visualizePathStyle: {stroke: '#48c906'}});}
         }
         else if(_(Game.creeps).filter( {memory: { role: 'mover' } } ).size() < 2 ) {
             if (Game.spawns.Spawn1.energy < Game.spawns.Spawn1.energyCapacity) {

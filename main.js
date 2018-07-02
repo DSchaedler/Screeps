@@ -1,23 +1,19 @@
 require("lodash");
 
-var setup =         require('job.setup');
-var defendRoom =    require('job.defendRoom');
-
 var roleHarvester = require('role.harvester');
-var roleUpgrader =  require('role.upgrader');
-var roleBuilder =   require('role.builder');
-var roleRepairer =  require('role.repairer');
-var roleMover =     require('role.mover');
+var roleUpgrader = require('role.upgrader');
+var roleBuilder = require('role.builder');
+var roleRepairer = require('role.repairer');
+var roleMover = require('role.mover');
 
-Memory.roomController = Game.spawns.Spawn1.room.controller;
-Memory.sources = Game.spawns.Spawn1.room.find(FIND_SOURCES).id;
-
-const roomController =          Memory.roomController;
-const roomID =                  Memory.roomController.room.name;
-const sources =                 Memory.sources;
+const roomID = 'W57S52';
+const roomControllerObject = Game.spawns.Spawn1.room.controller;
+const sources = Game.spawns.Spawn1.room.find(FIND_SOURCES);
 
 const source0Points = Math.ceil(4 / 1.5);
 const source1Points = Math.ceil(3 / 1.5);
+
+var loopCount = 0;
 
 const profiler = require ('screeps-profiler');
 profiler.enable();
@@ -32,17 +28,18 @@ module.exports.loop = function () {
 		
 		new RoomVisual(roomID).text(("Time: " + Game.time), 24, 21, {align: 'left'});
 		
-		setup.run();
-		defendRoom.run();
+		defendRoom();
 		
-		if ((Game.time % 5) == 0) {
+		loopCount = loopCount + 1;
+		if (loopCount >= 5) {
 			var harvesters = _(Game.creeps).filter({memory: {role: 'harvester'}}).size();
 			var upgraders = _(Game.creeps).filter({memory: {role: 'upgrader'}}).size();
 			var builders = _(Game.creeps).filter({memory: {role: 'builder'}}).size();
 			var repairers = _(Game.creeps).filter({memory: {role: 'repairer'}}).size();
 			var movers = _(Game.creeps).filter({memory: {role: 'mover'}}).size();
 			
-			var controllerLevel = roomController.level;;
+			var controllerLevel = roomControllerObject.level;
+			loopCount = 0;
 		}
 		
 		var source0Mov = _(Game.creeps).filter({memory: {role: 'mover', source: '0'}}).size();
@@ -80,5 +77,30 @@ module.exports.loop = function () {
 				roleMover.run(creep, parseInt(creep.memory.source));}
 		}
 		
+		function defendRoom() {
+			
+			var hostiles = Game.rooms[roomID].find(FIND_HOSTILE_CREEPS);
+			var hurtCreeps = Game.rooms[roomID].find(FIND_MY_CREEPS, {filter: creeps => creeps.hits < creeps.hitsmax});
+			var towers = Game.rooms[roomID].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});			
+    		if(towers.length > 0) {
+    			if(hostiles.length > 0) {
+    				var username = hostiles[0].owner.username;
+    				if(username != "Invader") {
+    					Game.notify(`User ${username} spotted in room ${roomID}. Activiating Turrets.`);
+    				}
+    				towers.forEach(tower => tower.attack(hostiles[0]));
+    			}
+    			else if (hurtCreeps.length > 0) {
+    				towers.forEach(tower => tower.heal(hurtCreeps[0]));
+    			}
+    			else if (towers[0].energy > towers[0].energyCapacity / 2) {
+    				var targets = Game.rooms[roomID].find(FIND_STRUCTURES, { filter: object => object.hits < object.hitsMax	});
+    				targets.sort((a,b) => a.hits - b.hits);
+    		
+    				if (targets.length > 0) {
+    					towers.forEach(tower => tower.repair(targets[0]));}
+    			}
+    		}
+		}
 	});
 };
